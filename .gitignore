@@ -1,7 +1,9 @@
 *.css
-password/
+password/pp.html
 index.html
 .gitignore
 app.js
 blogs/
 new/index.html
+login/login.html
+login/register.html
