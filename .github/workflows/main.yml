@@ -1,5 +1,5 @@
 # File: .github/workflows/ci.yml
-name: CI Pipeline
+name: Build-process
 
 on:
   push:

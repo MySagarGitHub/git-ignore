@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api</title>
+</head>
+<body>
+    <h1>API Documentation</h1>
+    <script>
+        const apiData = {
+            title: "API Documentation",
+            description: "This is the API documentation for our application.",
+            endpoints: [
+                {
+                    method: "GET",
+                    path: "/api/v1/resource",
+                    description: "Fetches a resource."
+                },
+                {
+                    method: "POST",
+                    path: "/api/v1/resource",
+                    description: "Creates a new resource."
+                }
+            ]
+        };
+
+        // Render API documentation
+        document.body.innerHTML += `<h2>${apiData.title}</h2>`;
+        document.body.innerHTML += `<p>${apiData.description}</p>`;
+        document.body.innerHTML += `<h3>Endpoints</h3>`;
+        apiData.endpoints.forEach(endpoint => {
+            document.body.innerHTML += `<div>
+                <strong>${endpoint.method}</strong> ${endpoint.path}
+                <p>${endpoint.description}</p>
+            </div>`;
+        });
+    </script>
+</body>
+</html>
