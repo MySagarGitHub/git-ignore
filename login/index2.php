@@ -37,5 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Login</button>
         </form>
     </div>
+    <footer>
+        <p>&copy; 2023 My Website</p>
+    </footer>
 </body>
 </html>
