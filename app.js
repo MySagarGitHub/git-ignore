@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// Middleware to parse JSON
+
 app.use(express.json());
 
 // Sample route
