@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-
 app.use(express.json());
 
 // Sample route
@@ -17,6 +16,6 @@ app.get('/api/data', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port:3000}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
 
