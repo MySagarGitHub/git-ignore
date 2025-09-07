@@ -26,7 +26,12 @@ const App = () => {
                             <p>Price: ${product.price}</p>
                             <button>Add to Cart</button>
                         </div>
+
                     ))}
+                </div>
+                <div className="cart">
+                    <h2>Your Cart</h2>
+                    <p>No items in cart</p>
                 </div>
             </main>
             <footer>
