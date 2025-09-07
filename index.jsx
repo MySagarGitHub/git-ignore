@@ -33,6 +33,10 @@ const App = () => {
                     <h2>Your Cart</h2>
                     <p>No items in cart</p>
                 </div>
+                <div className="checkout">
+                    <h2>Checkout</h2>
+                    <button>Proceed to Checkout</button>
+                </div>
             </main>
             <footer>
                 <p>&copy; 2025 E-Commerce Site. All rights reserved.</p>
