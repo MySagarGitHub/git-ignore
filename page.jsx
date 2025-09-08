@@ -11,4 +11,5 @@ export const metadata = {
   title: 'My Page Title',
   description: 'This is a description of my page',
 }
+
 export default page;
