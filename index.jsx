@@ -39,7 +39,7 @@ const App = () => {
                 </div>
             </main>
             <footer>
-                <p>&copy; 2025 E-Commerce Site. All rights reserved.</p>
+                <p>&copy; E-Commerce Site. All rights reserved.</p>
             </footer>
         </div>
     );

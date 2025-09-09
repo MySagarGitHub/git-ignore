@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
         echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - Email: " . $row["email"] . "<br>";
     }
 } else {
-    echo "No results found.";
+    echo "No results.";
 }
 $conn->close();
 
