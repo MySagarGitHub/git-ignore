@@ -9,10 +9,8 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Express API!');
 });
 
-// Another route
-app.get('/api/data', (req, res) => {
-    res.json({ message: 'Here is your data!', data: [1, 2, 3, 4, 5] });
-});
+
+
 
 // Start the server
 app.listen(port, () => {
