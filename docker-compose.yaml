@@ -19,6 +19,22 @@ services:
       - db
     networks:
       - webnet
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    ports:
+      - "8443:443"
+      - "8081:80"
+      - "2222:22"
+    volumes:
+      - gitlab_config:/etc/gitlab
+      - gitlab_logs:/var/log/gitlab
+      - gitlab_data:/var/opt/gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8081'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+    networks:
+      - webnet    
 
   db:
     image: postgres:latest
