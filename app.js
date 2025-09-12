@@ -47,7 +47,9 @@ app.delete('/items/:id', (req, res) => {
     res.json(deleted[0]);
 });
 
-
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
 
 
 
