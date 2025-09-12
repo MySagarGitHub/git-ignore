@@ -31,6 +31,23 @@ app.post('/items', (req, res) => {
     items.push(newItem);
     res.status(201).json(newItem);
 });
+// Update item
+app.put('/items/:id', (req, res) => {
+    const item = items.find(i => i.id === parseInt(req.params.id));
+    if (!item) return res.status(404).send('Item not found');
+    item.name = req.body.name;
+    res.json(item);
+});
+
+// Delete item
+app.delete('/items/:id', (req, res) => {
+    const index = items.findIndex(i => i.id === parseInt(req.params.id));
+    if (index === -1) return res.status(404).send('Item not found');
+    const deleted = items.splice(index, 1);
+    res.json(deleted[0]);
+});
+
+
 
 
 
