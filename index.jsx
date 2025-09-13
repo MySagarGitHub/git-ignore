@@ -10,7 +10,7 @@ const App = () => {
     ];
 
     return (
-        <div>
+        <div className='app'>
             <header>
                 <h1>E-Commerce Site</h1>
                 <nav>
@@ -29,7 +29,7 @@ const App = () => {
 
                     ))}
                 </div>
-                <div className="cart">
+                <div className="cart" id="cart" >
                     <h2>Your Cart</h2>
                     <p>No items in cart</p>
                 </div>
