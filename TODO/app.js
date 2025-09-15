@@ -29,4 +29,26 @@
       return [];
     }
   }
-  
+  // --- Rendering ---
+  let activeFilter = "all";
+  function render() {
+    listEl.innerHTML = "";
+    const visible = todos.filter(t => {
+      if (activeFilter === "all") return true;
+      if (activeFilter === "active") return !t.done;
+      return t.done;
+    });
+
+    visible.forEach(todo => {
+      const li = document.createElement("li");
+      li.className = "todo-item";
+      li.dataset.id = todo.id;
+
+      // checkbox
+      const cb = document.createElement("button");
+      cb.className = "todo-checkbox" + (todo.done ? " checked" : "");
+      cb.setAttribute("aria-pressed", String(!!todo.done));
+      cb.setAttribute("aria-label", todo.done ? "Mark as not done" : "Mark done");
+      cb.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+      cb.addEventListener("click", () => toggle(todo.id));
+        
