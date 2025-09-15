@@ -12,6 +12,7 @@ export const metadata = {
   title: 'My Page Title',
   description: 'This is a description of my web page',
 }
- 
+  
+
 
 export default page;
