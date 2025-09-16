@@ -32,6 +32,11 @@ const App = () => {
                 <div className="cart" id="cart" >
                     <h2>Your Cart</h2>
                     <p>No items in cart</p>
+                    <div className='cart-items'>
+                        {/* Cart items will be dynamically added here */}
+                        <p>No items in cart</p>
+
+                    </div>
                 </div>
                 
             </main>

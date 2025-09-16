@@ -99,3 +99,56 @@
     const remaining = todos.filter(t => !t.done).length;
     countEl.textContent = `${remaining} item${remaining !== 1 ? "s" : ""} left`;
   }
+  // --- Actions ---
+  function add(text) {
+    if (!text || !text.trim()) return;
+    todos.unshift({ id: uid(), text: text.trim(), done: false, created: Date.now() });
+    save();
+    render();
+  }
+
+  function remove(id) {
+    todos = todos.filter(t => t.id !== id);
+    save();
+    render();
+  }
+
+  function toggle(id) {
+    todos = todos.map(t => t.id === id ? { ...t, done: !t.done } : t);
+    save();
+    render();
+  }
+
+  function clearCompleted() {
+    todos = todos.filter(t => !t.done);
+    save();
+    render();
+  }
+
+  function startEdit(id, textNode) {
+    const li = textNode.closest(".todo-item");
+    if (!li) return;
+    const todo = todos.find(t => t.id === id);
+    if (!todo) return;
+
+    const input = document.createElement("input");
+    input.className = "edit-input";
+    input.value = todo.text;
+    textNode.replaceWith(input);
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+
+    function finish(saveText) {
+      if (saveText !== null) {
+        todo.text = saveText.trim() || todo.text;
+      }
+      save();
+      render();
+    }
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") finish(input.value);
+      if (e.key === "Escape") finish(null);
+    });
+    input.addEventListener("blur", () => finish(input.value));
+  }
