@@ -152,3 +152,38 @@
     });
     input.addEventListener("blur", () => finish(input.value));
   }
+   // --- Events ---
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    add(input.value);
+    input.value = "";
+    input.focus();
+  });
+
+  clearBtn.addEventListener("click", () => {
+    clearCompleted();
+  });
+
+  filters.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filters.forEach(b => b.classList.remove("active"));
+      filters.forEach(b => b.setAttribute("aria-selected", "false"));
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+      activeFilter = btn.dataset.filter;
+      render();
+    });
+  });
+
+  // --- Init ---
+  function init() {
+    todos = load();
+    render();
+  }
+  init();
+
+  // Expose for debugging
+  window.todoApp = {
+    add, remove, toggle, clearCompleted, getAll: () => todos
+  };
+})();

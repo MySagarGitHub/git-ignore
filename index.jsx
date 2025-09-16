@@ -35,6 +35,11 @@ const App = () => {
                     <div className='cart-items'>
                         {/* Cart items will be dynamically added here */}
                         <p>No items in cart</p>
+                        <div className='cart-item'>
+                            <h3>Product 1</h3>
+                            <p>Price: $100</p>
+                            <button>Remove from Cart</button>
+                        </div>
 
                     </div>
                 </div>
