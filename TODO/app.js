@@ -182,8 +182,11 @@
   }
   init();
 
+  
   // Expose for debugging
   window.todoApp = {
     add, remove, toggle, clearCompleted, getAll: () => todos
   };
 })();
+
+
