@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useState } from "react";
 
-function page({children}) {
+function MyForm() {
+  const [input, setInput] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    alert(`Submitted: ${input}`);
+  };
+
   return (
-    <div className='bg-gray-200 min-h-screen '>
-      {children}
-    </div>
-  )
-
+    <div style={{ maxWidth: 400, margin: "2rem auto", padding: 20, border: "1px solid #ccc", borderRadius: 8 }}>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Enter something:
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            style={{ marginLeft: 10 }}
+          />
+        </label>
+        <button type="submit" style={{ marginLeft: 10 }}>Submit</button>
+      </form>
+     
+  );
 }
-export const metadata = {
-  title: 'My Page Title',
-  description: 'This is a description of my web page',
-}
-  
 
-
-export default page;
+export default MyForm;
