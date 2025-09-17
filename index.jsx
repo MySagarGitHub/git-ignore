@@ -29,7 +29,7 @@ const App = () => {
 
                     ))}
                 </div>
-                <div className="cart" id="cart" >
+                <div className="cart" style={{ flexDirection: "column", backgroundColor: "#f8f8f8", padding: "10px" }} >
                     <h2>Your Cart</h2>
                     <p>No items in cart</p>
                     <div className='cart-items'>
