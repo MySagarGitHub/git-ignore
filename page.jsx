@@ -23,8 +23,11 @@ function MyForm() {
         </label>
         <button type="submit" style={{ marginLeft: 10 }}>Submit</button>
       </form>
-      <div style={{ marginTop: 20, color: "#555" }}>
-        <strong>Notice:</strong> Please fill out the form and submit your response.
+      <div>
+        <nav>
+          <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a>
+
+        </nav>
       </div>
     </div>
   );
