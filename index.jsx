@@ -12,6 +12,10 @@ const App = () => {
     return (
         <div className="container">
             <header>
+                {/* You can add header content here */}
+            </header>
+            <main>
+                {/* You can add main content here, e.g., product list */}
             </main>
             <footer>
                 <p>&copy; E-Commerce Site. All rights reserved.</p>
