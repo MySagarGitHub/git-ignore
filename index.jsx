@@ -10,40 +10,8 @@ const App = () => {
     ];
 
     return (
-        <div className='app'>
+        <div className="container">
             <header>
-                <h1>E-Commerce Site</h1>
-                <nav>
-                    <a href="#home">Home</a> | <a href="#products">Products</a> | <a href="#cart">Cart</a>
-                </nav>
-            </header>
-            <main>
-                <h2>Our Products</h2>
-                <div className="product-list">
-                    {products.map((product) => (
-                        <div key={product.id} className="product-card">
-                            <h3>{product.name}</h3>
-                            <p>Price: ${product.price}</p>
-                            <button>Add to Cart</button>
-                        </div>
-
-                    ))}
-                </div>
-                <div className="cart" style={{ flexDirection: "column", backgroundColor: "#f8f8f8", padding: "10px" }} >
-                    <h2>Your Cart</h2>
-                    <p>No items in cart</p>
-                    <div className='cart-items'>
-                        {/* Cart items will be dynamically added here */}
-                        <p>No items in cart</p>
-                        <div className='cart-item'>
-                            <h3>Product 1</h3>
-                            <p>Price: $100</p>
-                            <button>Remove from Cart</button>
-                        </div>
-
-                    </div>
-                </div>
-                
             </main>
             <footer>
                 <p>&copy; E-Commerce Site. All rights reserved.</p>
