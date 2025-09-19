@@ -29,6 +29,7 @@
       return [];
     }
   }
+  
   // --- Rendering ---
   let activeFilter = "all";
   function render() {
