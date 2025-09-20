@@ -10,7 +10,7 @@ const App = () => {
     ];
 
     return (
-        <div className="container">
+        <div className="container" style={{ flexDirection: "column" }}>
             <header>
                 {/* You can add header content here */}
             </header>
@@ -21,6 +21,7 @@ const App = () => {
                 <p>&copy; E-Commerce Site. All rights reserved.</p>
             </footer>
         </div>
+
     );
 };
 ReactDOM.render(<App />, document.getElementById('root'));
