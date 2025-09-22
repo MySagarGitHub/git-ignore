@@ -116,8 +116,71 @@ class FormValidator {
                 if (!value) {
                     this.setError(name, 'Message is required');
                     isValid = false;
-                } else if (value.length < 10) {
-                    this.setError(name, 'Message must be at least 10 characters long');
-                    isValid = false;
+                                } else if (value.length < 10) {
+                                    this.setError(name, 'Message must be at least 10 characters long');
+                                    isValid = false;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                        return isValid;
+                    }
+                
+                    setError(fieldName, message) {
+                        this.errors[fieldName] = message;
+                        const field = this.form.querySelector(`[name="${fieldName}"]`);
+                        if (field) {
+                            let errorElem = field.nextElementSibling;
+                            if (!errorElem || !errorElem.classList.contains('error-message')) {
+                                errorElem = document.createElement('div');
+                                errorElem.className = 'error-message';
+                                field.parentNode.insertBefore(errorElem, field.nextSibling);
+                            }
+                            errorElem.textContent = message;
+                            field.classList.add('input-error');
+                        }
+                    }
+                
+                    clearError(fieldName) {
+                        delete this.errors[fieldName];
+                        const field = this.form.querySelector(`[name="${fieldName}"]`);
+                        if (field) {
+                            let errorElem = field.nextElementSibling;
+                            if (errorElem && errorElem.classList.contains('error-message')) {
+                                errorElem.textContent = '';
+                            }
+                            field.classList.remove('input-error');
+                        }
+                    }
+                
+                    isValidEmail(email) {
+                        // Simple email regex
+                        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                    }
+                
+                    isValidPhone(phone) {
+                        // Simple phone regex (10-15 digits, optional +, spaces, dashes)
+                        return /^(\+?\d[\d\s-]{9,14}\d)$/.test(phone);
+                    }
+                
+                    handleSubmit(event) {
+                        event.preventDefault();
+                        let isFormValid = true;
+                        const inputs = this.form.querySelectorAll('input, select, textarea');
+                        inputs.forEach(input => {
+                            if (!this.validateField(input)) {
+                                isFormValid = false;
+                            }
+                        });
+                
+                        if (isFormValid) {
+                            this.form.submit();
+                        }
+                    }
                 }
-                break;
+                
+                // Initialize form validation for a form with id 'contact-form'
+                document.addEventListener('DOMContentLoaded', function() {
+                    new FormValidator('contact-form');
+                });
