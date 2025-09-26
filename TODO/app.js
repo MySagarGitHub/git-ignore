@@ -188,6 +188,7 @@
   window.todoApp = {
     add, remove, toggle, clearCompleted, getAll: () => todos
   };
+  
 })();
 
 
