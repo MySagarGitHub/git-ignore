@@ -47,6 +47,7 @@ export default function FileUpload() {
   return (
     <div className="max-w-md mx-auto mt-8 p-6 border rounded-lg">
       <h2 className="text-xl font-bold mb-4">Upload File to S3</h2>
+      <p className="mb-4">Please select a file to upload.</p> 
       
       <form onSubmit={handleUpload}>
         <div className="mb-4">
