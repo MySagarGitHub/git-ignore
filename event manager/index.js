@@ -76,16 +76,7 @@ let events = [
     }
 ];
 
-// DOM Elements
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
-const eventForm = document.getElementById('eventForm');
-const eventsGrid = document.getElementById('eventsGrid');
-const filterButtons = document.querySelectorAll('.filter-btn');
-const modal = document.getElementById('eventModal');
-const modalContent = document.getElementById('modalContent');
-const closeModal = document.querySelector('.close');
+/
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
