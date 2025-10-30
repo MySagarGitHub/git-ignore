@@ -55,7 +55,15 @@
         <button id="clickBtn">Click Me</button>
         <p id="message" style="color: green; margin-top: 15px;"></p>
     </div>
+    <!-- PHASE 3: BEHAVIOR (JavaScript) -->
+    <script>
+        const button = document.getElementById('clickBtn');
+        const message = document.getElementById('message');
 
+        button.addEventListener('click', () => {
+            message.textContent = "🎉 You clicked the button!";
+        });
+    </script>
     
 
 </body>
