@@ -1,70 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <!-- PHASE 1: STRUCTURE (HTML) -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three Phases Demo</title>
-
-    <!-- PHASE 2: STYLE (CSS) -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" /><title>Dummy One-Page Site</title>
+    <meta name="description" content="A simple single-file demo site with HTML, CSS and JS." />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        :root{
+            --bg:#f7f9fc; --card:#fff; --text:#0f1724; --muted:#566270;
+            --accent:#0ea5a4; --accent-2:#7c3aed;
+            --glass: rgba(255,255,255,0.6);
+            --shadow: 0 6px 18px rgba(15,23,36,0.08);
+        }
+        [data-theme="dark"]{
+            --bg:#071023; --card:#071829; --text:#e6eef6; --muted:#9fb0c5; --glass: rgba(255,255,255,0.03);
+            --shadow: 0 8px 28px rgba(2,6,23,0.6);
         }
 
-        .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background:linear-gradient(180deg,var(--bg),color-mix(in srgb, var(--bg) 80%, #0000 )), color-mix(in srgb, var(--bg) 20%, #fff 80%);
+            color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+            line-height:1.45; padding:32px;
         }
 
-        h1 {
-            color: #333;
+        .wrap{max-width:1100px;margin:0 auto;}
+        header{display:flex;align-items:center;gap:16px;justify-content:space-between;margin-bottom:28px}
+        .brand{display:flex;gap:12px;align-items:center}
+        .logo{
+            width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+            box-shadow:var(--shadow);display:grid;place-items:center;color:white;font-weight:700;
+        }
+        nav{display:flex;gap:14px;align-items:center}
+        nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+        nav a:hover{background:var(--glass);color:var(--text)}
+
+        .controls{display:flex;gap:8px;align-items:center}
+        .btn{
+            background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;
+            color:var(--text);backdrop-filter: blur(6px)
+        }
+        .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;border:0}
+        .hero{
+            display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin-bottom:32px;
+        }
+        .card{background:var(--card);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+        h1{margin:0;font-size:28px}
+        p.lead{margin:10px 0;color:var(--muted)}
+
+        .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+        .feature{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+        .feature h3{margin:8px 0 6px;font-size:16px}
+        .feature p{margin:0;color:var(--muted);font-size:14px}
+
+        form label{display:block;margin:8px 0 6px;font-weight:600;font-size:13px}
+        input,textarea,select{
+            width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);
+            background:transparent;color:var(--text);outline:none;font-size:14px;
+        }
+        .small{font-size:13px;color:var(--muted)}
+
+        footer{margin-top:28px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
+
+        /* responsive */
+        @media (max-width:880px){
+            .hero{grid-template-columns:1fr;gap:12px}
+            .features{grid-template-columns:repeat(2,1fr)}
+            nav{display:none}
+            header{gap:10px}
+        }
+        @media (max-width:520px){
+            .features{grid-template-columns:1fr}
+            body{padding:18px}
         }
 
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
+        /* subtle interactive styles */
+        .toast{position:fixed;right:18px;bottom:18px;background:var(--card);padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);display:none;color:var(--text)}
+        .show{display:block;animation:pop .28s ease}
+        @keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+        .mobile-toggle{display:none}
+        @media (max-width:880px){.mobile-toggle{display:inline-flex}}
     </style>
 </head>
 <body>
+    <div class="wrap" id="app" data-theme="">
+        <header>
+            <div class="brand">
+                <div class="logo">PP</div>
+                <div>
+                    <div style="font-weight:800">PrimaryPage</div>
+                    <div class="small">Dummy single-file site</div>
+                </div>
+            </div>
 
-    <!-- PHASE 1 (continued): STRUCTURE -->
-    <div class="container">
-        <h1>Hello, World!</h1>
-        <p>Welcome to the three-phase HTML demo.</p>
-        <button id="clickBtn">Click Me</button>
-        <p id="message" style="color: green; margin-top: 15px;"></p>
-    </div>
-    <!-- PHASE 3: BEHAVIOR (JavaScript) -->
-    <script>
-        const button = document.getElementById('clickBtn');
-        const message = document.getElementById('message');
+            <nav aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#contact">Contact</a>
+            </nav>
 
-        button.addEventListener('click', () => {
-            message.textContent = "🎉 You clicked the button!";
-        });
-    </script>
-    
+            <div class="controls">
+                <button class="btn mobile-toggle" id="menuBtn" aria-label="Menu">☰</button>
+                <button class="btn" id="themeBtn" title="Toggle theme">Toggle</button>
+                <button class="btn primary" id="cta">Get started</button>
+            </div>
+        </header>
 
-</body>
-</html>
+        <main>
+            <section class="hero" id="home">
+                <div>
+                    <div class="card">
+                        <h1>Simple demo site — single file</h1>
+                        <p class="lead">This page demonstrates a compact layout with responsive styles and small JavaScript interactions — theme toggle, mobile menu, and a contact form with client validation.</p>
+
+                        <div style="display:flex;gap:12px;margin-top:12px">
+                            <button class="btn primary" id="demoAction">Try feature</button>
+                            <button class="btn" id="genPwd">Generate password</button>
+                        </div>
+
+                        <div class="features" id="features" style="margin-top:18px">
+                            <div class="feature card">
+                                <strong>Responsive</strong>
+                                <h3>Works on any screen</h3>
+                                <p>Adaptive grid and nav that collapses for small devices.</p>
+                            </div>
+                            <div class="feature card">
+                                <strong>Interactive</strong>
+                                <h3>Theme & forms</h3>
+                                <p>Light / dark theme and client-side validation for instant feedback.</p>
+                            </div>
+                            <div class="feature card">
+                                <strong>Single file</strong>
+                                <h3>HTML, CSS & JS</h3>
+                                <p>All markup, styling and scripts live in one file for easy portability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside>
+                    <div class="card">
+                        <h3 style="margin:0 0 6px">Contact</h3>
+                        <p class="small">Send a quick message. This form only validates locally and simulates a send.</p>
+
+                        <form id="contactForm" novalidate>
+                            <label for="name">Name</label>
+                            <input id="name" name="name" required placeholder="Your name" />
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Say hi..." required></textarea>
+                            <div style="display:flex;gap:8px;margin-top:12px">
+                                <button class="btn primary" type="submit">Send</button>
+                                <button class="btn" type="button" id="clearBtn">Clear</button>
+                            </div>
+                            <div id="formNote" class="small" style="margin-top:8px"></div>
+                        </form>
+                        <hr style="margin:14px 0;border:none;border-top:1px solid rgba(0,0,0,0.04)" />
+                        <div>
+                            <strong>Password demo</strong>
+                            <div style="display:flex;gap:8px;margin-top:8px">
+                                <input id="pwdOutput" readonly placeholder="Generated password" /></div></section></div></html>
