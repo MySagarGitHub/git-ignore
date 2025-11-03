@@ -41,6 +41,7 @@ export default function FileUpload() {
       alert('Upload failed');
     } finally {
       setUploading(false);
+      
     }
   };
 
